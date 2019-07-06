@@ -6,5 +6,5 @@ include_directories(sdlraycaster ${SDL2_INCLUDE_DIRS})
 set(CMAKE_CXX_FLAGS "-fpermissive ")
 
 add_executable(raycaster src/Main.cpp)
-target_sources(raycaster PUBLIC src/Window.cpp)
+target_sources(raycaster PUBLIC src/Window.cpp src/Map.h)
 target_link_libraries(raycaster PUBLIC SDL2)
