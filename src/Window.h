@@ -1,3 +1,4 @@
+#include "Framebuffer.h"
 #include "SDL.h"
 
 namespace sdlraycaster {
@@ -6,6 +7,8 @@ class Window {
   bool isRunning_ = false;
   SDL_Window *window_ = nullptr;
   SDL_Renderer *renderer_ = nullptr;
+  Framebuffer *fb_ = nullptr;
+  SDL_Texture *framebuffer_texture_;
 
   int width_ = 0;
   int height_ = 0;

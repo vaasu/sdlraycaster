@@ -13,10 +13,15 @@ void Window::Init(int w, int h) {
   } else {
     window_ = SDL_CreateWindow("raytracer", 0, 0, w, h, SDL_WINDOW_SHOWN);
     renderer_ = SDL_CreateRenderer(window_, -1, 0);
+    fb_ = new Framebuffer(w, h);
     if (renderer_) {
       isRunning_ = true;
-      SDL_SetRenderDrawColor(renderer_, 0, 255, 255, 255);
-      std::cout << "renderer created" << std::endl;
+      framebuffer_texture_ =
+          SDL_CreateTexture(renderer_, SDL_PIXELFORMAT_ABGR8888,
+                            SDL_TEXTUREACCESS_STREAMING, w, h);
+      SDL_UpdateTexture(framebuffer_texture_, NULL,
+                        reinterpret_cast<void *>(fb_->img.data()), w * 4);
+
     } else {
       isRunning_ = false;
     }
@@ -35,9 +40,10 @@ void Window::HandleEvents() {
 }
 void Window::Render() {
   SDL_RenderClear(renderer_);
-  // DrawTopView(renderer_);
-  SDL_SetRenderDrawColor(renderer_, 0, 255, 255, 255);
+  // draw the framebuffer texture:
+  // SDL_SetRenderDrawColor(renderer_, 0, 255, 255, 255);
 
+  SDL_RenderCopy(renderer_, framebuffer_texture_, NULL, NULL);
   SDL_RenderPresent(renderer_);
 }
 void Window::Clean() {
