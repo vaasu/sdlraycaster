@@ -13,8 +13,9 @@ class Framebuffer {
 
  public:
   void putPixel(int x, int y, uint32_t color);
+  void clear(uint32_t color);
   Framebuffer(int w, int h);
-  std::vector<uint32_t> img;
+  std::vector<uint32_t> img{};
 };
 }  // namespace sdlraycaster
 #endif

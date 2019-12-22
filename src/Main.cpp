@@ -3,14 +3,14 @@
 #include "Window.h"
 
 int main(int argc, char* argv[]) {
-  sdlraycaster::Window win{};
-  win.Init(640, 480);
-  while (win.isRunning()) {
-    win.HandleEvents();
-    win.Update();
-    win.Render();
+  sdlraycaster::Window* win = new sdlraycaster::Window();
+  win->Init(640, 480);
+  while (win->isRunning()) {
+    win->HandleEvents();
+    win->Update();
+    win->Render();
   }
-  win.Clean();
+  win->Clean();
 
   return 0;
 }

@@ -1,6 +1,7 @@
 #include "Window.h"
 #include <iostream>
 #include "Map.h"
+#include "Utils.h"
 
 namespace sdlraycaster {
 
@@ -39,9 +40,9 @@ void Window::HandleEvents() {
   }
 }
 void Window::Render() {
+  SDL_SetRenderDrawColor(renderer_, 0, 255, 255, 255);
   SDL_RenderClear(renderer_);
   // draw the framebuffer texture:
-  // SDL_SetRenderDrawColor(renderer_, 0, 255, 255, 255);
 
   SDL_RenderCopy(renderer_, framebuffer_texture_, NULL, NULL);
   SDL_RenderPresent(renderer_);
@@ -53,7 +54,15 @@ void Window::Clean() {
   std::cout << "Game cleaned" << std::endl;
 }
 bool Window::isRunning() { return isRunning_; }
-void Window::Update() {}
+void Window::Update() {
+  // memset(fb_->img.data(), 255, 640 * 480 * sizeof(uint32_t));
+  static uint8_t c = 2;
+  fb_->img.assign(640 * 480, pack_color(255, 0, 0));
+  SDL_UpdateTexture(framebuffer_texture_, NULL,
+                    reinterpret_cast<void *>(fb_->img.data()), width_ * 4);
+
+  c = c * 3;
+}
 void Window::DrawTopView(SDL_Renderer *r) {
   // int topViewWidth = width_ / 2;
   // int topViewHeight = height_;
