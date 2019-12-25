@@ -1,4 +1,4 @@
-#include "Utils.h"
+#include "utils.h"
 
 namespace sdlraycaster {
 uint32_t pack_color(const uint8_t r, const uint8_t g, const uint8_t b,
