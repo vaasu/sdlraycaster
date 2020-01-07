@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "framebuffer.h"
+#include "world.h"
 
 namespace sdlraycaster {
 
@@ -23,6 +24,7 @@ class Window {
   bool isRunning_ = false;
   sf::RenderWindow window_;
   Framebuffer fb_;
+  World world_;
 
   int width_ = 0;
   int height_ = 0;

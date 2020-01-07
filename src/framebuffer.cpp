@@ -7,11 +7,11 @@ void Framebuffer::clear(uint32_t color) {}
 void Framebuffer::putPixel(int x, int y, Rgb color) {
   putPixel(x, y, {color.r, color.g, color.b, 255});
 }
-void Framebuffer::putPixel(int x, int y, Rgba color) {
+void Framebuffer::putPixel(unsigned int x, unsigned int y, Rgba color) {
   std::size_t start_index = 4 * (y * width_ + x);
   // std::size_t start_index = x * height_ + y;
   if (start_index >= framebuffer_size_) {
-    std::cout << "wrong index";
+    // std::cout << "wrong index";
     return;
   }
   fb_data_[start_index] = color.r;

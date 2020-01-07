@@ -23,6 +23,11 @@ struct screen_coord {
   int x{0};
   int y{0};
 };
+struct world_coord {
+  float x{0};
+  float y{0};
+  float z{0};
+};
 }  // namespace sdlraycaster
 
 #endif
