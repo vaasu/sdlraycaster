@@ -3,7 +3,9 @@
 #include "utils.h"
 
 namespace sdlraycaster {
-void Framebuffer::clear(uint32_t color) {}
+void Framebuffer::clear(uint32_t color) {
+  std::fill(fb_data_.begin(), fb_data_.end(), 0);
+}
 void Framebuffer::putPixel(int x, int y, Rgb color) {
   putPixel(x, y, {color.r, color.g, color.b, 255});
 }
