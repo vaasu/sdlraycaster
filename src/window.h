@@ -11,7 +11,9 @@ class Window {
         height_{h},
         window_{sf::VideoMode(w, h), "SFML works!"},
         fb_{w, h},
-        isRunning_{true} {};
+        isRunning_{true} {
+    window_.setFramerateLimit(60);
+  };
   ~Window() = default;
   void HandleEvents();
   void Render();

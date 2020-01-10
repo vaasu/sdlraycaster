@@ -130,7 +130,7 @@ class World {
         0, 0, 0, 1  //
     };
     objects_[0].RotateY(degree);
-    degree += 0.50;
+    degree += 1.0;
     if (degree > 360.0) degree = 0.0;
 
     // y axis rotation;
