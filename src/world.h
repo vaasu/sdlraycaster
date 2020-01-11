@@ -4,80 +4,13 @@
 #include <glm/ext.hpp>
 #include <glm/glm.hpp>
 
-#include "model.h"
 #include "sdlraycaster.h"
 
+#include "model/cube.h"
+#include "model/model.h"
+#include "model/scene_object.h"
+
 namespace sdlraycaster {
-
-class Cube : public Model {
- public:
-  Cube() {
-    points_.push_back({-0.5, -0.5, 0.5});
-    points_.push_back({-0.5, 0.5, 0.5});
-    points_.push_back({0.5, 0.5, 0.5});
-    points_.push_back({0.5, -0.5, 0.5});
-
-    points_.push_back({-0.5, -0.5, -0.5});
-    points_.push_back({-0.5, 0.5, -0.5});
-    points_.push_back({0.5, 0.5, -0.5});
-    points_.push_back({0.5, -0.5, -0.5});
-  }
-
- private:
-};
-class SceneObject {
- public:
-  SceneObject(const Model& m, glm::vec4 l) : model_{m}, location_{l} {
-    rotation_ = glm::mat4(1.0);
-  }
-  Model model_;
-  glm::vec4 location_;
-  glm::mat4 rotation_;  // rotation matrix
-  std::vector<glm::vec3> GetWorldCordinates() const {
-    std::vector<glm::vec3> pts{};
-
-    for (auto const& p : model_.GetAllPoints()) {
-      pts.push_back((rotation_ * glm::vec4(p, 1.)) + location_);
-    }
-    return pts;
-  }
-  void RotateZ(float degrees) {
-    // rotate the model by degrees anticlockwise
-    float phi = glm::radians(degrees);
-    float float_rotation_matrix_z[16] = {
-        glm::cos(phi), glm::sin(phi), 0, 0,  //
-        //
-        -1 * glm::sin(phi), glm::cos(phi), 0, 0,  //
-        //
-        0, 0, 1, 0,  //
-        //
-        0, 0, 0, 1  //
-    };
-
-    // y axis rotation;
-    glm::mat4 rotation_matrix = glm::make_mat4(float_rotation_matrix_z);
-    rotation_ = rotation_matrix;
-  }
-  void RotateY(float degrees) {
-    // rotate the model by degrees anticlockwise
-    float phi = glm::radians(degrees);
-    float float_rotation_matrix_y[16] = {
-        glm::cos(phi), 0, -1 * glm::sin(phi), 0,  //
-        //
-        0, 1, 0, 0,  //
-        //
-        glm::sin(phi), 0, glm::cos(phi), 0,  //
-        //
-        0, 0, 0, 1  //
-    };
-
-    // y axis rotation;
-    glm::mat4 rotation_matrix = glm::make_mat4(float_rotation_matrix_y);
-    rotation_ = rotation_matrix;
-  }
-
- private:
-};
 
 class World {
  public:
