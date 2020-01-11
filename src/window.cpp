@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "map.h"
-#include "utils.h"
+#include "sdlraycaster.h"
 #include "window.h"
 #include "world.h"
 

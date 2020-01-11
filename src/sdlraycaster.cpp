@@ -1,7 +1,7 @@
 #include <glm/ext.hpp>
 #include <glm/glm.hpp>
 
-#include "utils.h"
+#include "sdlraycaster.h"
 
 namespace sdlraycaster {
 

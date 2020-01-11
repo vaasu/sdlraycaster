@@ -6,7 +6,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "utils.h"
+#include "sdlraycaster.h"
 namespace sdlraycaster {
 class Framebuffer {
  public:

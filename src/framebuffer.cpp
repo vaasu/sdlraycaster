@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "framebuffer.h"
-#include "utils.h"
+#include "sdlraycaster.h"
 
 namespace sdlraycaster {
 

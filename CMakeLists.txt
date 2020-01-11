@@ -15,7 +15,7 @@ if(USE_GLM_MATH)
 endif(USE_GLM_MATH)
 
 add_executable(raycaster src/main.cpp)
-target_sources(raycaster PUBLIC src/window.cpp src/map.h src/framebuffer.cpp src/utils.cpp)
+target_sources(raycaster PUBLIC src/window.cpp src/map.h src/framebuffer.cpp src/sdlraycaster.cpp src/model.cpp)
 target_link_libraries(raycaster PUBLIC sfml-graphics sfml-window sfml-system)
 
 add_subdirectory(external/googletest)
