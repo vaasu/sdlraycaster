@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "window.h"
 #ifdef USE_GLM_MATH
 #include <glm/ext.hpp>
@@ -18,6 +19,5 @@ int main(int argc, char* argv[]) {
     win.Render();
   }
   win.Clean();
-
   return 0;
 }

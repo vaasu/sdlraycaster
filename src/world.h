@@ -18,16 +18,6 @@ class Model {
 class Cube : public Model {
  public:
   Cube() {
-    // points_.push_back({0, 0, 0});
-    // points_.push_back({0, 1, 0});
-    // points_.push_back({1, 1, 0});
-    // points_.push_back({1, 0, 0});
-
-    // points_.push_back({0, 0, 1});
-    // points_.push_back({0, 1, 1});
-    // points_.push_back({1, 1, 1});
-    // points_.push_back({1, 0, 1});
-
     points_.push_back({-0.5, -0.5, 0.5});
     points_.push_back({-0.5, 0.5, 0.5});
     points_.push_back({0.5, 0.5, 0.5});

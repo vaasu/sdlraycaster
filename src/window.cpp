@@ -1,7 +1,8 @@
-#include "window.h"
 #include <iostream>
+
 #include "map.h"
 #include "utils.h"
+#include "window.h"
 #include "world.h"
 
 #ifdef USE_GLM_MATH
@@ -33,6 +34,7 @@ void Window::Render() {
 }
 void Window::Clean() { std::cout << "Game cleaned" << std::endl; }
 bool Window::isRunning() { return isRunning_; }
+
 void Window::Update() {
   fb_.clear(0);
   std::vector<glm::vec2> screen_space_cordinates{};
@@ -49,16 +51,6 @@ void Window::Update() {
   for (const auto& p : screen_space_cordinates) {
     fb_.putPixel((int)p.x, (int)p.y, {255, 0, 0, 255});
   }
-  // convert to screen space :/
-
-  // for (auto const x : points) {
-  //   std::cout << glm::to_string(x) << std::endl;
-  // }
-  // fb_.putPixel((int)sample_point.x, (int)sample_point.y, {255, 0, 0, 255});
-
-  // manipulate framebuffer here,
-
-  // fb_.DrawVLineDown({300, 0}, height_, {0, 0, 255});
 
   fb_.UpdateTexture();
 }

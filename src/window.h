@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+
 #include "framebuffer.h"
 #include "world.h"
 
@@ -20,7 +21,6 @@ class Window {
   void Clean();
   bool isRunning();
   void Update();
-  // void DrawTopView(SDL_Renderer *r);
 
  private:
   bool isRunning_ = false;
