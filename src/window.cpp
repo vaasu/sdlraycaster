@@ -48,9 +48,12 @@ void Window::Update() {
 
     });
   }
+  rasterizer_.Rasterize(screen_space_cordinates, fb_);
+  /*
   for (const auto& p : screen_space_cordinates) {
     fb_.putPixel((int)p.x, (int)p.y, {255, 0, 0, 255});
   }
+  */
 
   fb_.UpdateTexture();
 }

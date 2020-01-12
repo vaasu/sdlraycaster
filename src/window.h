@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "framebuffer.h"
+#include "rasterizer/rasterizer.h"
 #include "world.h"
 
 namespace sdlraycaster {
@@ -27,6 +28,7 @@ class Window {
   sf::RenderWindow window_;
   Framebuffer fb_;
   World world_;
+  Rasterizer rasterizer_{};
 
   int width_ = 0;
   int height_ = 0;

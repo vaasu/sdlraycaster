@@ -9,6 +9,9 @@
 #include <glm/glm.hpp>
 
 namespace sdlraycaster {
+using Vec2vec = std::vector<glm::vec2>;
+using Vec3vec = std::vector<glm::vec3>;
+using Vec4vec = std::vector<glm::vec4>;
 
 glm::vec4 homogenize(glm::vec4 v);
 struct Rgba {
