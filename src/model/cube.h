@@ -13,14 +13,15 @@ class Cube : public Model {
     // front face
 
     // first triangle
-    points_.push_back({1, -1, 1});
-    points_.push_back({1, 1, 1});
-    points_.push_back({-1, -1, 1});
+    float scale = 0.5;
+    points_.push_back({1 * scale, -1 * scale, 1 * scale});
+    points_.push_back({1 * scale, 1 * scale, 1 * scale});
+    points_.push_back({-1 * scale, -1 * scale, 1 * scale});
 
     // seocond triangle:
-    points_.push_back({1, 1, 1});
-    points_.push_back({-1, 1, 1});
-    points_.push_back({-1, -1, 1});
+    points_.push_back({1 * scale, 1 * scale, 1 * scale});
+    points_.push_back({-1 * scale, 1 * scale, 1 * scale});
+    points_.push_back({-1 * scale, -1 * scale, 1 * scale});
 
     // left face
     // back face
