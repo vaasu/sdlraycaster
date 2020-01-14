@@ -30,14 +30,15 @@ void Rasterizer::Rasterize(const Vec2vec& screen_space_coordinates,
       for (int j = min_y; j <= max_y; j++) {
         // check if the pixel i,y is inside the triangle
         auto pt = glm::vec2(i, j);
+        // tie break rule aka top-left rule is not yet implemented
         if (edge_p0p1(pt) >= 0 && edge_p1p2(pt) >= 0 && edge_p2p0(pt) >= 0) {
-          fb.putPixel(i, j, Rgba{255, 0, 255, 227});
+          fb.putPixel(i, fb.GetHeight() - j, Rgba{255, 0, 255, 227});
         }
       }
     }
-    fb.putPixel(p0.x, p0.y, Rgba{255, 0, 0, 255});
-    fb.putPixel(p1.x, p1.y, Rgba{0, 255, 0, 255});
-    fb.putPixel(p2.x, p2.y, Rgba{255, 255, 255, 255});
+    fb.putPixel(p0.x, fb.GetHeight() - p0.y, Rgba{255, 0, 0, 255});
+    fb.putPixel(p1.x, fb.GetHeight() - p1.y, Rgba{0, 255, 0, 255});
+    fb.putPixel(p2.x, fb.GetHeight() - p2.y, Rgba{255, 255, 255, 255});
 
     // compute bounding box of pixel version of it
   }

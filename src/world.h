@@ -7,6 +7,7 @@
 #include "sdlraycaster.h"
 
 #include "model/cube.h"
+#include "model/heart.h"
 #include "model/model.h"
 #include "model/scene_object.h"
 
@@ -15,7 +16,8 @@ namespace sdlraycaster {
 class World {
  public:
   World() {
-    AddModel(Cube(), {4.0, -1.0, -10.0, 0.0});
+    // AddModel(Cube(), {4.0, -1.0, -10.0, 0.0});
+    AddModel(Heart(), {4.0, -1.0, -10.0, 0.0});
     // AddModel(Cube(), {-3.0, -1.0, -10.0});
   }
   void AddModel(const Model& model, glm::vec4 location) {
