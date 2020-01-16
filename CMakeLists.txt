@@ -7,10 +7,11 @@ include_directories(src)
 
 set(CMAKE_CXX_FLAGS "-fpermissive ")
 
-option(USE_GLM_MATH "Use glm math library"ON)
+option(USE_GLM_MATH "Use glm math library" ON)
 
 if(USE_GLM_MATH)
     add_definitions(-DUSE_GLM_MATH)
+    add_subdirectory(external/glm/)
     find_package(glm REQUIRED)
 endif(USE_GLM_MATH)
 
