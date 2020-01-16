@@ -10,6 +10,7 @@ std::vector<glm::vec3> SceneObject::GetWorldCordinates() const {
 
   for (auto const& p : model_.GetAllPoints()) {
     pts.push_back((rotation_ * glm::vec4(p, 1.)) + location_);
+    
   }
   return pts;
 }
