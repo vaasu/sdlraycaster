@@ -2,6 +2,7 @@
 #include "model.h"
 #include "scene_object.h"
 #include "sdlraycaster.h"
+#include <glm/gtx/matrix_operation.hpp>
 
 namespace sdlraycaster {
 
@@ -9,7 +10,10 @@ std::vector<Vertex> SceneObject::GetWorldCordinates() const {
   std::vector<Vertex> pts{};
 
   for (auto const &p : model_.GetAllVertices()) {
-    pts.push_back(Vertex{(rotation_ * p.GetPoint()) + location_});
+    //caculate new normal aka normal transform:
+    //
+    //pts.push_back(Vertex{(rotation_ * scale_* p.GetPoint()) + location_});
+    pts.push_back(Vertex{composite_matrix_ *p.GetPoint(),normal_transform_matrix_*p.GetNormal()});
   }
   return pts;
 }
@@ -28,7 +32,8 @@ void SceneObject::RotateZ(float degrees) {
 
   // y axis rotation;
   glm::mat4 rotation_matrix = glm::make_mat4(float_rotation_matrix_z);
-  rotation_ = rotation_matrix;
+  rotation_matrix_ = rotation_matrix;
+  updateCompositeMatrix();
 }
 void SceneObject::RotateY(float degrees) {
   // rotate the model by degrees anticlockwise
@@ -45,7 +50,8 @@ void SceneObject::RotateY(float degrees) {
 
   // y axis rotation;
   glm::mat4 rotation_matrix = glm::make_mat4(float_rotation_matrix_y);
-  rotation_ = rotation_matrix;
+  rotation_matrix_ = rotation_matrix;
+  updateCompositeMatrix();
 }
 
 } // namespace sdlraycaster

@@ -12,27 +12,29 @@ class Vertex {
 public:
   Vertex(const Vertex& v) = default;
   Vertex(vec4 pt, vec3 norm, vec2 texture)
-      : point_{pt}, normal_{norm}, texture_coord_{texture} {}
+      : point_{pt}, normal_{glm::vec4{norm,0.0}}, texture_coord_{texture} {}
 
   Vertex(vec3 pt) : point_{vec4{pt, 1.0}} {}
-  Vertex(vec3 pt,vec3 normal) : point_{vec4{pt, 1.0}},normal_{normal} {}
+  Vertex(vec3 pt,vec3 normal) : point_{vec4{pt, 1.0}},normal_{glm::vec4{normal,0.0}} {}
+  Vertex(vec3 pt,vec3 normal,vec3 color) : point_{vec4{pt, 1.0}},normal_{glm::vec4{normal,0.0}},color_{color} {}
 
-  void SetNormal(vec3 new_norm) { normal_ = new_norm; }
+  //this might not be used
+  void SetNormal(vec4 new_norm) { normal_ = new_norm; }
 
   vec4 GetPoint() const { return point_; }
-  vec3 GetNormal() const { return normal_; }
+  vec4 GetNormal() const { return normal_; }
   vec2 GetTextureCoordinates() const { return texture_coord_; }
-  void ColorVetex(Rgb color) { color_ = color;}
+  void ColorVetex(vec3 color) { color_ = color;}
 
 protected:
   /* homogeneous coordinates */
   vec4 point_{};
 
   /* normal of vertex */
-  vec3 normal_{};
+  vec4 normal_{};
 
   /* texture coords */
   vec2 texture_coord_{};
-  Rgb color_{};
+  vec3 color_{};
 };
 } // namespace sdlraycaster

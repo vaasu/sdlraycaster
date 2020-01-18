@@ -33,7 +33,7 @@ void Window::Render() {
   window_.display();
 }
 void Window::Clean() { std::cout << "Game cleaned" << std::endl; }
-bool Window::isRunning() { return isRunning_; }
+bool Window::isRunning(){ return isRunning_; }
 
 void Window::Update() {
   fb_.clear(0);

@@ -16,9 +16,9 @@ std::vector<glm::vec4> World::PerpsectiveProject(unsigned int d) {
   //        sizeof(float_projection_matrix));
 
   for (auto const &o : objects_) {
-    for (auto const &world_point : o.GetWorldCordinates()) {
+    for (auto const &world_vertex : o.GetWorldCordinates()) {
       // glm::vec4 point = glm::vec4(world_point, 1.0);
-      auto tmp = projection_matrix * world_point.GetPoint();
+      auto tmp = projection_matrix * world_vertex.GetPoint();
 
       output.push_back(tmp);
     }
