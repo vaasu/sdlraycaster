@@ -26,6 +26,7 @@ class World {
   };
   std::vector<SceneObject> GetAllSceneObjects() { return objects_; }
   std::vector<glm::vec4> PerpsectiveProject(unsigned int d);
+  void Tick();
 
  private:
   std::vector<SceneObject> objects_;

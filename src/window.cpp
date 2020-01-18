@@ -37,16 +37,12 @@ bool Window::isRunning() { return isRunning_; }
 
 void Window::Update() {
   fb_.clear(0);
-  /* Geometry Processing */
+  /* Application Processing */
+  world_.Tick();
 
-  /* Vertex Shading */
-  /* Projection */
-  /* Clipping */
-  /* Screen mapping */
-
-  /* Raterization */
-
-  /* Pixel processing */
+  /* 2.3 - Geometry Processing */
+  // view transform model and camera
+  // compute positions of vertices
   std::vector<glm::vec2> screen_space_cordinates{};
   std::vector<glm::vec4> points = world_.PerpsectiveProject(5);
   for (const auto &p : points) {
@@ -58,7 +54,22 @@ void Window::Update() {
 
         });
   }
+
+  /* 2.3.1 --- Vertex Shading */
+  // shading is done here
+  
+  /* 2.3.2 Optinal vetex processing */
+  // {none} 
+
+  /* --- Projection */
+
+  /* --- Clipping */
+  /* --- Screen mapping */
+
+  /* Raterization */
   rasterizer_.Rasterize(screen_space_cordinates, fb_);
+
+  /* Pixel processing */
   /*
   for (const auto& p : screen_space_cordinates) {
     fb_.putPixel((int)p.x, (int)p.y, {255, 0, 0, 255});
