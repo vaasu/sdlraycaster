@@ -47,10 +47,10 @@ std::vector<glm::vec4> World::PerpsectiveProject(unsigned int d) {
 
   for (auto const& o : objects_) {
     for (auto const& world_point : o.GetWorldCordinates()) {
-      glm::vec4 point = glm::vec4(world_point, 1.0);
-      auto tmp = projection_matrix * point;
+      //glm::vec4 point = glm::vec4(world_point, 1.0);
+      auto tmp = projection_matrix * world_point.GetPoint();
 
-      output.push_back(projection_matrix * point);
+      output.push_back(tmp);
     }
   }
   return output;

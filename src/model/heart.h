@@ -6,6 +6,7 @@
 #include "sdlraycaster.h"
 
 namespace sdlraycaster {
+#if 0
 class Heart : public Model {
   // model world, in model world, up is y, x is rihgt, neg z is looking foward
  public:
@@ -121,4 +122,5 @@ class Heart : public Model {
   float scale_{0.1};
   float z_{1};
 };
-}  // namespace sdlraycaster
+#endif
+} // namespace sdlraycaster

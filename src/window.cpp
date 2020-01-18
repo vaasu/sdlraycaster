@@ -37,16 +37,26 @@ bool Window::isRunning() { return isRunning_; }
 
 void Window::Update() {
   fb_.clear(0);
+  /* Geometry Processing */
+
+  /* Vertex Shading */
+  /* Projection */
+  /* Clipping */
+  /* Screen mapping */
+
+  /* Raterization */
+
+  /* Pixel processing */
   std::vector<glm::vec2> screen_space_cordinates{};
   std::vector<glm::vec4> points = world_.PerpsectiveProject(5);
-  for (const auto& p : points) {
-    screen_space_cordinates.push_back(glm::vec2{
-        // x-cordinate:
-        ((p.x / p.w) + 1) * (width_ / 2),
-        // y-cordinate
-        ((p.y / p.w) + 1) * (height_ / 2)
+  for (const auto &p : points) {
+    screen_space_cordinates.push_back(
+        glm::vec2{// x-cordinate:
+                  ((p.x / p.w) + 1) * (width_ / 2),
+                  // y-cordinate
+                  ((p.y / p.w) + 1) * (height_ / 2)
 
-    });
+        });
   }
   rasterizer_.Rasterize(screen_space_cordinates, fb_);
   /*
@@ -57,4 +67,4 @@ void Window::Update() {
 
   fb_.UpdateTexture();
 }
-}  // namespace sdlraycaster
+} // namespace sdlraycaster

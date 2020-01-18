@@ -4,9 +4,9 @@
 
 #include <stdint.h>
 #include <SFML/Graphics.hpp>
-
-#include <glm/ext.hpp>
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
+#include <glm/ext.hpp>
 
 namespace sdlraycaster {
 using Vec2vec = std::vector<glm::vec2>;
