@@ -3,11 +3,12 @@
 #include <vector>
 
 #include "sdlraycaster.h"
+#include "world_element.h"
 #include "vertex.h"
 #include <glm/gtx/normal.hpp>
 
 namespace sdlraycaster {
-class Model {
+class Model : public WorldElement{
 public:
   std::vector<Vertex> GetAllVertices() const { return vertices_; }
   // points need to be counterclockwise for normal to face you
@@ -29,9 +30,5 @@ public:
     AddTriangleFace(top_right, top_left, bottom_left);
   }
 
-protected:
-  // number of points are multiples of three as they describe a triangle
-  // points on a triangle are added in counterclockwise direction
-  std::vector<Vertex> vertices_;
 };
 } // namespace sdlraycaster

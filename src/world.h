@@ -11,6 +11,7 @@
 #include "model/cube.h"
 #include "model/heart.h"
 #include "model/scene_object.h"
+#include "lighting/basic_light.h"
 
 namespace sdlraycaster {
 
@@ -26,9 +27,14 @@ class World {
   };
   std::vector<SceneObject> GetAllSceneObjects() { return objects_; }
   std::vector<glm::vec4> PerpsectiveProject(unsigned int d);
+  void AddLight(const BasicLight& light) {
+      lights_.push_back(light);
+
+  }
   void Tick();
 
  private:
-  std::vector<SceneObject> objects_;
+  std::vector<SceneObject> objects_{};
+  std::vector<BasicLight> lights_{};
 };
 }  // namespace sdlraycaster
