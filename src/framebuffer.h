@@ -25,6 +25,7 @@ class Framebuffer {
   const sf::Sprite& getSprite() const { return fb_sprite_; };
   void UpdateTexture() { fb_texture_.update(fb_data_.data()); }
   int GetHeight() const { return height_; }
+  int GetWidth() const { return width_; }
 
  private:
   int width_;

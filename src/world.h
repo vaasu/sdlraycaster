@@ -34,7 +34,7 @@ public:
     objects_.push_back(SceneObject(model, location));
   };
   std::vector<SceneObject> GetAllSceneObjects() { return objects_; }
-  std::vector<glm::vec4> PerpsectiveProject(unsigned int d);
+  std::vector<Vertex> PerpsectiveProject(unsigned int d);
   void AddLight(const BasicLight &light) { lights_.push_back(light); }
   std::vector<BasicLight> GetAllLights() { return lights_; }
   void Tick();

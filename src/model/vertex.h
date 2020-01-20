@@ -22,6 +22,7 @@ public:
   void SetNormal(vec4 new_norm) { normal_ = new_norm; }
 
   vec4 GetPoint() const { return point_; }
+  void SetPoint(vec4 pt) { point_ =pt; }
   vec4 GetNormal() const { return normal_; }
   vec2 GetTextureCoordinates() const { return texture_coord_; }
   void ColorVetex(vec3 color) { color_ = color;}

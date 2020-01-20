@@ -44,7 +44,8 @@ void Window::Update() {
   // view transform model and camera
   // compute positions of vertices
   std::vector<glm::vec2> screen_space_cordinates{};
-  std::vector<glm::vec4> points = world_.PerpsectiveProject(5);
+  std::vector<Vertex> points = world_.PerpsectiveProject(5);
+  /*
   for (const auto &p : points) {
     screen_space_cordinates.push_back(
         glm::vec2{// x-cordinate:
@@ -54,6 +55,7 @@ void Window::Update() {
 
         });
   }
+  */
 
   /* 2.3.1 --- Vertex Shading */
   // shading is done here
@@ -67,7 +69,7 @@ void Window::Update() {
   /* --- Screen mapping */
 
   /* Raterization */
-  rasterizer_.Rasterize(screen_space_cordinates, fb_);
+  rasterizer_.Rasterize(points, fb_);
 
   /* Pixel processing */
 

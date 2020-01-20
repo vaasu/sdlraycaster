@@ -1,8 +1,8 @@
 #include "world.h"
 namespace sdlraycaster {
 
-std::vector<glm::vec4> World::PerpsectiveProject(unsigned int d) {
-  std::vector<glm::vec4> output{};
+std::vector<Vertex> World::PerpsectiveProject(unsigned int d) {
+  std::vector<Vertex> output{};
   float float_projection_matrix[16] = {
       1.0, 0,   0,   0,                            //
       0,   1.0, 0,   0,                            //
@@ -16,11 +16,11 @@ std::vector<glm::vec4> World::PerpsectiveProject(unsigned int d) {
   //        sizeof(float_projection_matrix));
 
   for (auto const &o : objects_) {
-    for (auto const &world_vertex : o.GetWorldCordinates()) {
+    for (auto &world_vertex : o.GetWorldCordinates()) {
       // glm::vec4 point = glm::vec4(world_point, 1.0);
-      auto tmp = projection_matrix * world_vertex.GetPoint();
+      world_vertex.SetPoint( projection_matrix * world_vertex.GetPoint());
 
-      output.push_back(tmp);
+      output.push_back(world_vertex);
     }
   }
   return output;
