@@ -9,12 +9,15 @@ void Rasterizer::Rasterize(const std::vector<Vertex>& projected_points,
                            Framebuffer& fb) {
   // rasterization
   for (int i = 0; i < projected_points.size(); i += 3) {
-    glm::vec2 p0 {ClipSpaceToScreenSpace(projected_points[i+0].GetPoint(),fb.GetHeight(),fb.GetWidth())};
-    glm::vec2 p1 {ClipSpaceToScreenSpace(projected_points[i+1].GetPoint(),fb.GetHeight(),fb.GetWidth())};
-    glm::vec2 p2 {ClipSpaceToScreenSpace(projected_points[i+2].GetPoint(),fb.GetHeight(),fb.GetWidth())};
+    glm::vec2 p0{ClipSpaceToScreenSpace(projected_points[i + 0].GetPoint(),
+                                        fb.GetWidth(), fb.GetHeight())};
+    glm::vec2 p1{ClipSpaceToScreenSpace(projected_points[i + 1].GetPoint(),
+                                        fb.GetWidth(), fb.GetHeight())};
+    glm::vec2 p2{ClipSpaceToScreenSpace(projected_points[i + 2].GetPoint(),
+                                        fb.GetWidth(), fb.GetHeight())};
 
-//    glm::vec4 p1 projected_points[i + 1];
- //   glm::vec4 p2 projected_points[i + 2];
+    //    glm::vec4 p1 projected_points[i + 1];
+    //   glm::vec4 p2 projected_points[i + 2];
 
     // compute bounding box of triangle
     int min_x = static_cast<int>(std::min<float>({p0.x, p1.x, p2.x}));
@@ -39,9 +42,12 @@ void Rasterizer::Rasterize(const std::vector<Vertex>& projected_points,
         }
       }
     }
-    //fb.putPixel(((p0.x/p0.w)+1) *(fb.GetWidth()/2), (fb.GetHeight() - ((p0.y/p0.w)+1)*(fb.GetHeight()/2)), Rgba{255, 0, 0, 255});
-    //fb.putPixel(((p1.x/p0.w)+1) *(fb.GetWidth()/2), (fb.GetHeight() - ((p1.y/p0.w)+1)*(fb.GetHeight()/2)), Rgba{255, 0, 0, 255});
-    //fb.putPixel(((p2.x/p0.w)+1) *(fb.GetWidth()/2), (fb.GetHeight() - ((p2.y/p0.w)+1)*(fb.GetHeight()/2)), Rgba{255, 0, 0, 255});
+    // fb.putPixel(((p0.x/p0.w)+1) *(fb.GetWidth()/2), (fb.GetHeight() -
+    // ((p0.y/p0.w)+1)*(fb.GetHeight()/2)), Rgba{255, 0, 0, 255});
+    // fb.putPixel(((p1.x/p0.w)+1) *(fb.GetWidth()/2), (fb.GetHeight() -
+    // ((p1.y/p0.w)+1)*(fb.GetHeight()/2)), Rgba{255, 0, 0, 255});
+    // fb.putPixel(((p2.x/p0.w)+1) *(fb.GetWidth()/2), (fb.GetHeight() -
+    // ((p2.y/p0.w)+1)*(fb.GetHeight()/2)), Rgba{255, 0, 0, 255});
     fb.putPixel(p1.x, fb.GetHeight() - p1.y, Rgba{0, 255, 0, 255});
     fb.putPixel(p2.x, fb.GetHeight() - p2.y, Rgba{255, 255, 255, 255});
 
@@ -57,11 +63,11 @@ std::function<double(glm::vec2)> Rasterizer::ComputeEdge(glm::vec2 p0,
   };
 }
 
-glm::vec2 Rasterizer::ClipSpaceToScreenSpace(glm::vec4 p,unsigned int width,unsigned int height) {
-    return vec2{
-                // x-cordinate:
-                  ((p.x / p.w) + 1) * (width / 2),
-                  // y-cordinate
-                  ((p.y / p.w) + 1) * (height / 2)};
+glm::vec2 Rasterizer::ClipSpaceToScreenSpace(glm::vec4 p, unsigned int width,
+                                             unsigned int height) {
+  return vec2{// x-cordinate:
+              ((p.x / p.w) + 1) * (width / 2),
+              // y-cordinate
+              ((p.y / p.w) + 1) * (height / 2)};
 }
 }  // namespace sdlraycaster
