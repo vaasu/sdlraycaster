@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <iostream>
 
-#include "rasterizer.h"
 #include "sdlraycaster.h"
+#include "rasterizer.h"
 
 namespace sdlraycaster {
 void Rasterizer::Rasterize(const std::vector<Vertex>& projected_points,
@@ -38,7 +38,17 @@ void Rasterizer::Rasterize(const std::vector<Vertex>& projected_points,
         auto pt = glm::vec2(i, j);
         // tie break rule aka top-left rule is not yet implemented
         if (edge_p0p1(pt) >= 0 && edge_p1p2(pt) >= 0 && edge_p2p0(pt) >= 0) {
-          fb.putPixel(i, fb.GetHeight() - j, Rgba{255, 0, 255, 227});
+
+          //colorization using barycentric coordinates
+          //using description from https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/rasterization-stage
+
+          auto normalizing_constant = edge_p1p2(p0);
+
+          auto lambda_0 = edge_p1p2(pt)/normalizing_constant;
+          auto lambda_1 = edge_p2p0(pt)/normalizing_constant;
+          auto lambda_2 = edge_p0p1(pt)/normalizing_constant;
+
+          fb.putPixel(i, fb.GetHeight() - j, ComputeMaterialColor(projected_points,lambda_0,lambda_1,lambda_2));
         }
       }
     }
@@ -53,6 +63,24 @@ void Rasterizer::Rasterize(const std::vector<Vertex>& projected_points,
 
     // compute bounding box of pixel version of it
   }
+}
+Rgba Rasterizer::ComputeMaterialColor(const std::vector<Vertex>& projected_points,float lambda_0, float lambda_1, float lambda_2){
+  auto color =  ((lambda_0 * projected_points[0].GetColor()[0]) + (lambda_1 * projected_points[1].GetColor()[0])
+                         + (lambda_2 * projected_points[2].GetColor()[0]));
+  // auto color =  ((lambda_0 * projected_points[0].GetColor()[0]) );
+
+  sf::Uint8 red  = 255 * color;
+
+  // std::cerr << "red = "  << unsigned(lambda_0) << std::endl;
+    // std::cerr << "p[0][blue]= " << projected_points[0].GetColor()[2] << std::endl;
+
+  if (projected_points[0].GetColor()[0] > 0.5){
+    std::cerr << "lambda 0 = " << lambda_0  << std::endl;
+    std::cerr << "color = " << projected_points[0].GetColor()[0]  << std::endl;
+    throw 3;
+  }
+  auto a = Rgba{red,0,0,0};
+  return a;
 }
 std::function<double(glm::vec2)> Rasterizer::ComputeEdge(glm::vec2 p0,
                                                          glm::vec2 p1) {

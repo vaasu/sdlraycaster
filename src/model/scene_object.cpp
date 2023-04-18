@@ -13,7 +13,7 @@ std::vector<Vertex> SceneObject::GetWorldCordinates() const {
     //caculate new normal aka normal transform:
     //
     //pts.push_back(Vertex{(rotation_ * scale_* p.GetPoint()) + location_});
-    pts.push_back(Vertex{composite_matrix_ *p.GetPoint(),normal_transform_matrix_*p.GetNormal()});
+    pts.push_back(Vertex{composite_matrix_ *p.GetPoint(),normal_transform_matrix_*p.GetNormal(),p.GetColor()});
     //pts.push_back(Vertex{composite_matrix_ *p.GetPoint(),normal_transform_matrix_*p.GetNormal()});
   }
   return pts;

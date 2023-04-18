@@ -20,7 +20,7 @@ std::vector<Vertex> World::PerpsectiveProject(unsigned int d) {
       // glm::vec4 point = glm::vec4(world_point, 1.0);
       world_vertex.SetPoint( projection_matrix * world_vertex.GetPoint());
 
-      output.push_back(world_vertex);
+      output.push_back(std::move(world_vertex));
     }
   }
   return output;
